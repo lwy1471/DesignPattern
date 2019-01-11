@@ -8,7 +8,10 @@ class Display():
         self.resolution = resolution
         self.user = user
         self.setInputIF(interface)
-            
+        
+    def setInputIF(self, interface):
+        self.InputInterface = interface      
+        
     @abstractmethod
     def introItself(self):
         pass
@@ -16,8 +19,7 @@ class Display():
     def displayIF(self):
         return self.InputInterface.getInterface()
         
-    def setInputIF(self, interface):
-        self.InputInterface = interface
+
         
         
 class InputIF():
