@@ -19,9 +19,6 @@ class Display():
     def displayIF(self):
         return self.InputInterface.getInterface()
         
-
-        
-        
 class InputIF():
     __metaclass__ = ABCMeta
     
