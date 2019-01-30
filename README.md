@@ -66,8 +66,9 @@ Observer class :
 1. The Component declares the common interface for both wrappers and wrapped objects.  
 2. Concrete Component is a class of objects being wrapped. It defines the basic behavior, which can be altered by decorators.  
 3. The Base Decorator class has a field for referencing a wrapped object. The field’s type should be declared as the component interface so it can contain both concrete components and decorators. The base decorator delegates all operations to the wrapped object.  
-4.Concrete Decorators define extra behaviors that can be added to components dynamically. Concrete decorators override methods of the base decorator and execute their behavior either before or after calling the parent method.  
-5.The Client can wrap components in multiple layers of decorators, as long as it works with all objects via the component interface.  
+
+4. Concrete Decorators define extra behaviors that can be added to components dynamically. Concrete decorators override methods of the base decorator and execute their behavior either before or after calling the parent method.  
+5. The Client can wrap components in multiple layers of decorators, as long as it works with all objects via the component interface.  
 
 
 **[Examples]**  
@@ -203,7 +204,7 @@ Skelethon of an algorithm that preparing and drinking caffeine beverages - Coffe
 <img src="https://refactoring.guru/images/patterns/diagrams/state/structure-indexed.png">  
 1. Context stores a reference to one of the concrete state objects and delegates to it all state-specific work. The context communicates with the state object via the state interface. The context exposes a setter for passing it a new state object.  
 2. The State interface declares the state-specific methods. These methods should make sense for all concrete states because you don’t want some of your states to have useless methods that will never be called.  
-3.Concrete States provide their own implementations for the state-specific methods. To avoid duplication of similar code across multiple states, you may provide intermediate abstract classes that encapsulate some common behavior.  
+3. Concrete States provide their own implementations for the state-specific methods. To avoid duplication of similar code across multiple states, you may provide intermediate abstract classes that encapsulate some common behavior.  
 State objects may store a backreference to the context object. Through this reference, the state can fetch any required info from the context object, as well as initiate state transitions.  
 4. Both context and concrete states can set the next state of the context and perform the actual state transition by replacing the state object linked to the context.  
 
