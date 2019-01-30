@@ -11,6 +11,11 @@ The references is
 
 **[STRUCTURE]**  
 <img src="https://refactoring.guru/images/patterns/diagrams/strategy/structure-indexed.png">  
+1. The Context maintains a reference to one of the concrete strategies and communicates with this object only via the strategy interface.  
+2. The Strategy interface is common to all concrete strategies. It declares a method the context uses to execute a strategy.  
+3. Concrete Strategies implement different variations of an algorithm the context uses.  
+4. The context calls the execution method on the linked strategy object each time it needs to run the algorithm. The context doesn’t know what type of strategy it works with or how the algorithm is executed.  
+5. The Client creates a specific strategy object and passes it to the context. The context exposes a setter which lets clients replace the strategy associated with the context at runtime.
 
 **[Examples]**  
 Diplays and those interfaces  
@@ -32,6 +37,12 @@ Diplays and those interfaces
 
 **[STRUCTURE]**  
 <img src="https://refactoring.guru/images/patterns/diagrams/observer/structure-indexed.png">  
+1. The Publisher issues events of interest to other objects. These events occur when the publisher changes its state or executes some behaviors. Publishers contain a subscription infrastructure that lets new subscribers join and current subscribers leave the list.  
+2. When a new event happens, the publisher goes over the subscription list and calls the notification method declared in the subscriber interface on each subscriber object.  
+3. The Subscriber interface declares the notification interface. In most cases, it consists of a single update method. The method may have several parameters that let the publisher pass some event details along with the update.  
+4. Concrete Subscribers perform some actions in response to notifications issued by the publisher. All of these classes must implement the same interface so the publisher isn’t coupled to concrete classes.  
+5. Usually, subscribers need some contextual information to handle the update correctly. For this reason, publishers often pass some context data as arguments of the notification method. The publisher can pass itself as an argument, letting subscriber fetch any required data directly.  
+6. The Client creates publisher and subscriber objects separately and then registers subscribers for publisher updates.  
 
 **[Examples]**  
 Subject class : WeatherData send the weatherr data to the observers.  
@@ -52,6 +63,12 @@ Observer class :
 
 **[STRUCTURE]**  
 <img src="https://refactoring.guru/images/patterns/diagrams/decorator/structure-indexed.png">  
+1. The Component declares the common interface for both wrappers and wrapped objects.  
+2. Concrete Component is a class of objects being wrapped. It defines the basic behavior, which can be altered by decorators.  
+3. The Base Decorator class has a field for referencing a wrapped object. The field’s type should be declared as the component interface so it can contain both concrete components and decorators. The base decorator delegates all operations to the wrapped object.  
+4.Concrete Decorators define extra behaviors that can be added to components dynamically. Concrete decorators override methods of the base decorator and execute their behavior either before or after calling the parent method.  
+5.The Client can wrap components in multiple layers of decorators, as long as it works with all objects via the component interface.  
+
 
 **[Examples]**  
 Franchise pizza store and its branches.  
@@ -71,6 +88,16 @@ Franchise pizza store and its branches.
 
 **[STRUCTURE]**  
 <img src="https://refactoring.guru/images/patterns/diagrams/factory-method/structure-indexed.png">  
+1. The Product declares the interface, which is common to all objects that can be produced by the creator and its subclasses.  
+2. Concrete Products are different implementations of the product interface.  
+3. The Creator class declares the factory method that returns new product objects. It’s important that the return type of this method matches the product interface.  
+You can declare the factory method as abstract to force all subclasses to implement their own versions of the method. As an alternative, the base factory method can return some default product type.  
+Note, despite its name, product creation is not the primary responsibility of the creator. Usually, the creator class already has some core business logic related to products. The factory method helps to decouple this logic from the concrete product classes. Here is an analogy: a large software development company can have a training department for programmers. However, the primary function of the company as a whole is still writing code, not producing programmers.
+4. Concrete Creators override the base factory method so it returns a different type of product.  
+Note that the factory method doesn’t have to create new instances all the time. It can also return existing objects from a cache, an object pool, or another source.
+
+
+
 
 **[Examples]**  
 Franchise pizza store and its branches.  
@@ -89,6 +116,11 @@ Franchise pizza store and its branches.
 
 **[STRUCTURE]**  
 <img src="https://refactoring.guru/images/patterns/diagrams/command/structure-indexed.png">  
+1. The Sender class (aka invoker) is responsible for initiating requests. This class must have a field for storing a reference to a command object. The sender triggers that command instead of sending the request directly to the receiver. Note that the sender isn’t responsible for creating the command object. Usually, it gets a pre-created command from the client via the constructor.  
+2. The Command interface usually declares just a single method for executing the command.  
+3. Concrete Commands implement various kinds of requests. A concrete command isn’t supposed to perform the work on its own, but rather to pass the call to one of the business logic objects. However, for the sake of simplifying the code, these classes can be merged.  Parameters required to execute a method on a receiving object can be declared as fields in the concrete command. You can make command objects immutable by only allowing the initialization of these fields via the constructor.  
+4. The Receiver class contains some business logic. Almost any object may act as a receiver. Most commands only handle the details of how a request is passed to the receiver, while the receiver itself does the actual work.  
+5. The Client creates and configures concrete command objects. The client must pass all of the request parameters, including a receiver instance, into the command’s constructor. After that, the resulting command may be associated with one or multiple senders.  
 
 **[Examples]**  
 Remote controllers that contains all information about home appliances.  
@@ -109,6 +141,7 @@ Remote controllers that contains all information about home appliances.
 
 **[STRUCTURE]**  
 <img src="https://refactoring.guru/images/patterns/diagrams/adapter/structure-object-adapter-indexed.png">  
+1. The Class Adapter doesn’t need to wrap any objects because it inherits behaviors from both the client and the service. The adaptation happens within the overridden methods. The resulting adapter can be used in place of an existing client class.  
 
 **[Examples]**  
 Turkey interface makes the turkey possible to 'quack' which is the duck instacnes could.  
@@ -126,6 +159,11 @@ Turkey interface makes the turkey possible to 'quack' which is the duck instacne
 
 **[STRUCTURE]**  
 <img src="https://refactoring.guru/images/patterns/diagrams/facade/structure-indexed.png">  
+1. The Facade provides convenient access to a particular part of the subsystem’s functionality. It knows where to direct the client’s request and how to operate all the moving parts.  
+2. An Additional Facade class can be created to prevent polluting a single facade with unrelated features that might make it yet another complex structure. Additional facades can be used by both clients and other facades.  
+3. The Complex Subsystem consists of dozens of various objects. To make them all do something meaningful, you have to dive deep into the subsystem’s implementation details, such as initializing objects in the correct order and supplying them with data in the proper format.  
+Subsystem classes aren’t aware of the facade’s existence. They operate within the system and work with each other directly.  
+4. The Client uses the facade instead of calling the subsystem objects directly.  
 
 **[Examples]**  
 Home-Theater Facade class provides a simplified interface to the home theater stuffs.  
@@ -142,6 +180,8 @@ Home-Theater Facade class provides a simplified interface to the home theater st
 
 **[STRUCTURE]**  
 <img src="https://refactoring.guru/images/patterns/diagrams/template-method/structure-indexed.png">  
+1. The Abstract Class declares methods that act as steps of an algorithm, as well as the actual template method which calls these methods in a specific order. The steps may either be declared abstract or have some default implementation.  
+2. Concrete Classes can override all of the steps, but not the template method itself.  
 
 **[Examples]**  
 Skelethon of an algorithm that preparing and drinking caffeine beverages - Coffee, Tea  
@@ -161,6 +201,11 @@ Skelethon of an algorithm that preparing and drinking caffeine beverages - Coffe
 
 **[STRUCTURE]**  
 <img src="https://refactoring.guru/images/patterns/diagrams/state/structure-indexed.png">  
+1. Context stores a reference to one of the concrete state objects and delegates to it all state-specific work. The context communicates with the state object via the state interface. The context exposes a setter for passing it a new state object.  
+2. The State interface declares the state-specific methods. These methods should make sense for all concrete states because you don’t want some of your states to have useless methods that will never be called.  
+3.Concrete States provide their own implementations for the state-specific methods. To avoid duplication of similar code across multiple states, you may provide intermediate abstract classes that encapsulate some common behavior.  
+State objects may store a backreference to the context object. Through this reference, the state can fetch any required info from the context object, as well as initiate state transitions.  
+4. Both context and concrete states can set the next state of the context and perform the actual state transition by replacing the state object linked to the context.  
 
 **[Examples]**  
 Audio Player works differently dependion on its states when events are occured.
