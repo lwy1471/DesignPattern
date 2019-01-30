@@ -46,7 +46,26 @@ Observer class :
 :x: Subscribers are notified in random order.  
 
   
-## 3. Factory method Pattern  
+## 3. Decorater method Pattern  
+**[INTENT]**  
+**Decorator** is a structural design pattern that lets you attach new behaviors to objects by placing these objects inside special wrapper objects that contain the behaviors.
+
+**[STRUCTURE]**  
+<img src="https://refactoring.guru/images/patterns/diagrams/decorator/structure-indexed.png">  
+
+**[Examples]**  
+Franchise pizza store and its branches.  
+
+**[Pros and Cons]**  
+:sunny: You can extend an object’s behavior without making a new subclass.  
+:sunny: You can add or remove responsibilities from an object at runtime.  
+:sunny: You can combine several behaviors by wrapping an object into multiple decorators.  
+  
+:x: It’s hard to remove a specific wrapper from the wrappers stack.    
+:x: It’s hard to implement a decorator in such a way that its behavior doesn’t depend on the order in the decorators stack.    
+:x:The initial configuration code of layers might look pretty ugly.  
+  
+## 4. Factory method Pattern  
 **[INTENT]**  
 **Factory Method** is a creational design pattern that provides an interface for creating objects in a superclass, but allows subclasses to alter the type of objects that will be created.
 
@@ -62,26 +81,6 @@ Franchise pizza store and its branches.
 :sunny: Open/Closed Principle. You can introduce new types of products into the program without breaking existing client code.  
   
 :x: The code may become more complicated since you need to introduce a lot of new subclasses to implement the pattern. The best case scenario is when you’re introducing the pattern into an existing hierarchy of creator classes.  
-
-  
-  
-## 4. Template method Pattern  
-**[INTENT]**  
-**Template Method** is a behavioral design pattern that defines the skeleton of an algorithm in the superclass but lets subclasses override specific steps of the algorithm without changing its structure.
-
-**[STRUCTURE]**  
-<img src="https://refactoring.guru/images/patterns/diagrams/template-method/structure-indexed.png">  
-
-**[Examples]**  
-Skelethon of an algorithm that preparing and drinking caffeine beverages - Coffee, Tea  
-
-**[Pros and Cons]**  
-:sunny: You can let clients override only certain parts of a large algorithm, making them less affected by changes that happen to other parts of the algorithm.  
-:sunny: You can pull the duplicate code into a superclass.  
-  
-:x: Some clients may be limited by the provided skeleton of an algorithm.  
-:x: You might violate the Liskov Substitution Principle by suppressing a default step implementation via a subclass.  
-:x: Template methods tend to be harder to maintain the more steps they have.  
   
   
 ## 5. Command Pattern  
@@ -135,10 +134,28 @@ Home-Theater Facade class provides a simplified interface to the home theater st
 :sunny: You can isolate your code from the complexity of a subsystem.  
  
 :x: A facade can become a god object coupled to all classes of an app.  
+  
+  
+## 8. Template method Pattern  
+**[INTENT]**  
+**Template Method** is a behavioral design pattern that defines the skeleton of an algorithm in the superclass but lets subclasses override specific steps of the algorithm without changing its structure.
 
+**[STRUCTURE]**  
+<img src="https://refactoring.guru/images/patterns/diagrams/template-method/structure-indexed.png">  
+
+**[Examples]**  
+Skelethon of an algorithm that preparing and drinking caffeine beverages - Coffee, Tea  
+
+**[Pros and Cons]**  
+:sunny: You can let clients override only certain parts of a large algorithm, making them less affected by changes that happen to other parts of the algorithm.  
+:sunny: You can pull the duplicate code into a superclass.  
+  
+:x: Some clients may be limited by the provided skeleton of an algorithm.  
+:x: You might violate the Liskov Substitution Principle by suppressing a default step implementation via a subclass.  
+:x: Template methods tend to be harder to maintain the more steps they have.  
   
   
-## 8. State Pattern  
+## 9. State Pattern  
 **[INTENT]**  
 **State** is a behavioral design pattern that lets an object alter its behavior when its internal state changes. It appears as if the object changed its class.
 
