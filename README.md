@@ -9,7 +9,7 @@ The references is
 **Strategy** is a behavioral design pattern that lets you define a family of algorithms, put each of them into a separate class, and make their objects interchangeable.
 
 **[STRUCTURE]**  
-<img src=https://refactoring.guru/images/patterns/diagrams/strategy/structure-indexed.png>
+<img src="https://refactoring.guru/images/patterns/diagrams/strategy/structure-indexed.png">
 
 **[Examples]**  
 Diplays and those interfaces 
@@ -19,9 +19,11 @@ Diplays and those interfaces
 **Observer** is a behavioral design pattern that lets you define a subscription mechanism to notify multiple objects about any events that happen to the object they’re observing.
 
 **[STRUCTURE]**  
+<img src="https://refactoring.guru/images/patterns/diagrams/observer/structure-indexed.png">
 **[Examples]**  
 
 ## 3. Factory method Pattern  
 **[INTENT]**  
 **[STRUCTURE]**  
+<img src="">
 **[Examples]**  
