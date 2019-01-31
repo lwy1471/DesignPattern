@@ -57,7 +57,7 @@ Observer class :
 :x: Subscribers are notified in random order.  
 
   
-## 3. Decorater method Pattern  
+## 3. Decorater Pattern  
 **[INTENT]**  
 **Decorator** is a structural design pattern that lets you attach new behaviors to objects by placing these objects inside special wrapper objects that contain the behaviors.
 
